@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "travelGuide",
+    "slug": "travelGuide",
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin"
+      ]
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.zeynepermis.travelGuide",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAEugKYx3ElQFi0eq2TPvTqqBaI_RMKSlM"
+        }
+      },
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0b9e8612-2e30-4bea-a0b8-2948e23a5702"
+      }
+    }
+  }
+}

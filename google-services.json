@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "174264598154",
+    "project_id": "travelguide-f8278",
+    "storage_bucket": "travelguide-f8278.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174264598154:android:75a591d33a6f486c797773",
+        "android_client_info": {
+          "package_name": "com.zeynepermis.travelGuide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174264598154-7bn0ned40f7q47j8f4ucm9hkkbmdcaf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeynepermis.travelGuide",
+            "certificate_hash": "d2331aca70bb5c5a5b1055aa5519179bfb9dad3a"
+          }
+        },
+        {
+          "client_id": "174264598154-p9gjumkhk4n16vct61ghiq23rc0ibvuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeynepermis.travelGuide",
+            "certificate_hash": "e831b43a03a9525deded2bf04aca866596368f8d"
+          }
+        },
+        {
+          "client_id": "174264598154-ta8gta2aq1m7dm4ghgcllcrib97h8k0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeynepermis.travelGuide",
+            "certificate_hash": "ec79a14ee319da5c0d56fdf60a62429a5d280940"
+          }
+        },
+        {
+          "client_id": "174264598154-e5s6thhnc6b5fvkirh663dql1tqmsbjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQy8Xb-RF_n10G_f3rFYGqeShKX8PhdhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174264598154-8ec19l9si24lup364o4npqanvd3q616r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
