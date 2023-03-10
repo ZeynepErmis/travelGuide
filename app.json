@@ -26,7 +26,7 @@
       "package": "com.zeynepermis.travelGuide",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyAEugKYx3ElQFi0eq2TPvTqqBaI_RMKSlM"
+          "apiKey": "AIzaSyAReFuIL5WMdBM1OFwJQ5N3s4uZVfDCVGU"
         }
       },
       "googleServicesFile": "./google-services.json",
