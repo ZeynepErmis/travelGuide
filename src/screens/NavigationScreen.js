@@ -1,22 +1,33 @@
-import React from 'react';
-import MapView from 'react-native-maps';
-import { StyleSheet, View } from 'react-native';
+import React from "react";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { StyleSheet, View, Text } from "react-native";
 
 const NavigationScreen = () => {
+  const initialRegion = {
+    latitude: 41.0082,
+    longitude: 28.9784,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+
   return (
-    <View style={styles.container}>
-      <MapView style={styles.map} />
-    </View>
+ 
+  
+      <MapView
+        provider={PROVIDER_GOOGLE}
+        style={styles.map}
+        initialRegion={initialRegion}
+      />
+ 
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   map: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
   },
 });
 
