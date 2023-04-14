@@ -46,6 +46,14 @@ function Signup({ setScreen }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const addUser = (user) => {
+    firebase
+      .app()
+      .database("https://travelguide-f8278-default-rtdb.firebaseio.com")
+      .ref("/users")
+      .push({ email: user.email, password: user.password });
+  };
+
   const createAccount = async () => {
     try {
       if (password === confirmPassword) {
@@ -60,14 +68,10 @@ function Signup({ setScreen }) {
 
   return (
     <ScrollView
-    contentContainerStyle={{ flexGrow: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <ImageBackground
-        source={require("../../assets/login_background.jpg")}
-        style={{ flex: 1, resizeMode: "cover" }}
-      />
-      <View style={styles.bottomView}>
+      <View>
         <View style={styles.outer}>
           <View style={styles.inner}>
             <Text style={styles.header}>Signup</Text>
@@ -126,9 +130,6 @@ function Login({ setScreen }) {
   const [error, setError] = useState(null);
 
   const loginUser = async () => {
-
-    const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-
     try {
       await signInWithEmailAndPassword(authEmail, email, password);
     } catch (error) {
@@ -153,7 +154,7 @@ function Login({ setScreen }) {
       <ImageBackground
         source={require("../../assets/login_background.jpg")}
         style={{
-          height: Dimensions.get("window").height/2
+          height: Dimensions.get("window").height / 2,
         }}
       />
       <View style={styles.bottomView}>
@@ -183,9 +184,7 @@ function Login({ setScreen }) {
               style={styles.input}
             />
             <TouchableOpacity onPress={() => setScreen("reset-password")}>
-              <Text style={[styles.link]}>
-                Forget Password
-              </Text>
+              <Text style={[styles.link]}>Forget Password</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={loginUser}
@@ -194,7 +193,13 @@ function Login({ setScreen }) {
             >
               <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
-            <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 10  }}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginVertical: 10,
+              }}
+            >
               <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
               <Text style={{ textAlign: "center", paddingHorizontal: 5 }}>
                 or

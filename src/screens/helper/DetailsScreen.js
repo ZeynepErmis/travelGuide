@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ImageBackground,
   SafeAreaView,
@@ -7,11 +6,25 @@ import {
   View,
   Text,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 const DetailsScreen = ({ navigation, route }) => {
   const place = route.params;
+
+  const goToNavigationScreen = () => {
+    navigation.navigate("BottomNavigation", {
+      screen: "Navigation",
+      params: {
+        place: {
+          places_id: place.id,
+          name: place.name,
+          coordinate: place.coordinate,
+        },
+      },
+    });
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}>
@@ -41,13 +54,20 @@ const DetailsScreen = ({ navigation, route }) => {
       </ImageBackground>
       <View style={style.detailsContainer}>
         <View style={style.iconContainer}>
-          <Icon name="favorite" color="red" size={30} />
+          <TouchableOpacity onPress={goToNavigationScreen}>
+            <Icon name="directions" size={28} color="#1E90FF" />
+          </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "row", marginTop: 10 }}>
-          <Icon name="place" size={28} color=  "#1E90FF" />
+        <View style={{ flexDirection: "row", marginTop: 12 }}>
+          <Icon
+            style={{ marginTop: 5 }}
+            name="place"
+            size={28}
+            color="#1E90FF"
+          />
           <Text
             style={{
-              marginTop: 3,
+              marginTop: 10,
               marginLeft: 5,
               fontSize: 15,
               fontWeight: "bold",
@@ -61,16 +81,6 @@ const DetailsScreen = ({ navigation, route }) => {
           <Text style={{ marginTop: 20, fontSize: 15 }}>{place.details}</Text>
         </ScrollView>
       </View>
-      <View style={style.footer}>
-        <View
-          style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
-        ></View>
-        <View style={style.bookNowBtn}>
-          <Text style={{ color: "#ffffff", fontSize: 16, fontWeight: "bold" }}>
-            Go now
-          </Text>
-        </View>
-      </View>
     </SafeAreaView>
   );
 };
@@ -82,6 +92,7 @@ const style = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
+    left: 200,
   },
   iconContainer: {
     height: 60,

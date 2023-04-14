@@ -15,12 +15,13 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useState, useEffect } from "react";
 import { places } from "../components/data";
+import SearchPlacesBar from "../components/SearchPlacesBar";
 
 const { width } = Dimensions.get("window");
 
 const HomeScreen = ({ navigation }) => {
-
-
+  const [searchQuery, setSearchQuery] = useState("");
+  
   const categoryIcons = [
     {
       name: "park",
@@ -43,6 +44,7 @@ const HomeScreen = ({ navigation }) => {
       route: "ShoppingScreen",
     },
   ];
+
   const handleCategoryPress = (route) => {
     navigation.navigate(route);
   };
@@ -79,6 +81,27 @@ const HomeScreen = ({ navigation }) => {
       </View>
     );
   };
+
+  const renderHistoricalPlace = ({ item }) => {
+    if (
+      searchQuery &&
+      !item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ) {
+      return null;
+    }
+    return <Card place={item} />;
+  };
+
+  const renderMuseum = ({ item }) => {
+    if (
+      searchQuery &&
+      !item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ) {
+      return null;
+    }
+    return <Card place={item} />;
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
@@ -88,20 +111,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={[styles.headerTitle]}> Discover</Text>
               <Text style={[styles.headerTitle]}> Istanbul with us</Text>
             </View>
-            <View style={styles.searchContainer}>
-              <View style={styles.searchInputContainer}>
-                <Icon
-                  name="search"
-                  size={20}
-                  color="#999"
-                  style={styles.searchIcon}
-                />
-                <TextInput
-                  style={styles.searchInput}
-                  placeholder="Search places"
-                />
-              </View>
-            </View>
+           <SearchPlacesBar/>
           </View>
         </View>
         <ListCategories />
@@ -111,7 +121,7 @@ const HomeScreen = ({ navigation }) => {
             horizontal
             data={places.historicalPlaces}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => <Card place={item} />}
+            renderItem={renderHistoricalPlace}
           />
         </View>
 
@@ -121,7 +131,7 @@ const HomeScreen = ({ navigation }) => {
             horizontal
             data={places.museums}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => <Card place={item} />}
+            renderItem={renderMuseum}
           />
         </View>
       </View>
@@ -154,33 +164,7 @@ const styles = StyleSheet.create({
     // color: "#fff",
     color: "black",
   },
-  searchContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    marginTop: 25,
-    marginHorizontal: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 100,
-    elevation: 20,
-  },
-  searchInputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  searchInput: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  searchIcon: {
-    marginRight: 10,
-  },
+ 
   // boxList: {
   //   paddingHorizontal: 10,
   // },

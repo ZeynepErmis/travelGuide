@@ -7,28 +7,40 @@ import {
   Image,
   VirtualizedList,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import { places } from "../../components/data";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const ShoppingScreen = ({ navigation }) => {
+  const goToNavigationScreen = (item) => {
+    navigation.navigate("BottomNavigation", {
+      screen: "Navigation",
+      params: {
+        place: {
+          places_id: item.id,
+          name: item.name,
+          coordinate: item.coordinate,
+        },
+      },
+    });
+  };
+  
   const renderStore = ({ item }) => (
     <View style={styles.card}>
-    <Image source={item.image} style={styles.image} />
-    <View style={{ padding: 20 }}>
-      <Text style={styles.title}>{item.name}</Text>
-      <View style={styles.locationContainer}>
-        <Icon
-          name="location-on"
-          size={20}
-          color="#999"
-          style={styles.locationIcon}
-        />
-        <Text style={styles.location}>{item.location}</Text>
+      <Image source={item.image} style={styles.image} />
+      <TouchableOpacity
+        onPress={() => goToNavigationScreen(item)}
+        style={styles.iconContainer}
+      >
+        <Icon name="directions" size={28} color="#1E90FF" />
+      </TouchableOpacity>
+      <View style={{ padding: 20 }}>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.details}>{item.details}</Text>
       </View>
-      <Text style={styles.details}>{item.details}</Text>
     </View>
-  </View>
   );
 
   return (
@@ -108,14 +120,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
-    marginLeft:-5,
-
+    marginLeft: -5,
   },
   locationIcon: {
     alignSelf: "center",
   },
   description: {
     paddingBottom: 10,
+  },
+  iconContainer: {
+    height: 50,
+    width: 50,
+    position: "absolute",
+    top: 195,
+    backgroundColor: "#ffffff",
+    borderRadius: 30,
+    right: 20,
+    elevation: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

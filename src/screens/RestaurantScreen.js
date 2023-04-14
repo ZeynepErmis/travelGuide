@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,12 +9,64 @@ import {
   Linking,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-// import Icon from "react-native-vector-icons/MaterialIcons";
-
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { places } from "../components/data";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function RestaurantScreen() {
+function RestaurantScreen({ navigation }) {
+  // const [favorites, setFavorites] = useState([]);
+
+  // console.log(favorites);
+  // useEffect(() => {
+  //   getFavorites();
+  // }, []);
+
+  // const getFavorites = async () => {
+  //   try {
+  //     const favorites = await AsyncStorage.getItem("favorites");
+  //     if (favorites !== null) {
+  //       setFavorites(JSON.parse(favorites));
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
+
+  // const saveFavorites = async (favorites) => {
+  //   try {
+  //     await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
+
+  // const toggleFavorite = (id) => {
+  //   const index = favorites.indexOf(id);
+  //   if (index === -1) {
+  //     setFavorites([...favorites, id]);
+  //   } else {
+  //     setFavorites(favorites.filter((item) => item !== id));
+  //   }
+  //   saveFavorites(favorites);
+  // };
+
+  // const isFavorite = (id) => {
+  //   return favorites.includes(id);
+  // };
+
   const [selectedCategory, setSelectedCategory] = useState("Restaurants");
+  const goToNavigationScreen = (place) => {
+    navigation.navigate("BottomNavigation", {
+      screen: "Navigation",
+      params: {
+        place: {
+          places_id: place.id,
+          name: place.name,
+          coordinate: place.coordinate,
+        },
+      },
+    });
+  };
 
   const renderCategoryInfo = () => {
     if (selectedCategory === "Restaurants") {
@@ -29,28 +81,33 @@ function RestaurantScreen() {
               <View style={{ padding: 5 }}>
                 <Text style={styles.title}>{restaurant.name}</Text>
                 <View style={styles.locationContainer}>
-                  <Icon
-                    name="location-arrow"
-                    size={20}
-                    color="#999"
-                    style={styles.locationIcon}
-                  />
-                  <Text style={styles.location}>{restaurant.location}</Text>
-                </View>
-                <View style={styles.locationContainer}>
-                  <Icon
-                    name="external-link"
-                    size={20}
-                    color="#999"
-                    style={styles.locationIcon}
-                  />
                   <TouchableOpacity
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginLeft: 10,
+                    }}
                     onPress={() => Linking.openURL(restaurant.website)}
                   >
-                    <Text style={styles.location}>{restaurant.website}</Text>
+                    <Icon name="external-link" size={20} color="#1E90FF" />
+                    <Text
+                      style={{
+                        color: "#1E90FF",
+                        textDecorationLine: "underline",
+                        left: 5,
+                      }}
+                    >
+                      {restaurant.website}
+                    </Text>
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.details}>{restaurant.details}</Text>
+                <TouchableOpacity
+                  style={styles.iconContainer}
+                  onPress={() => goToNavigationScreen(restaurant)}
+                >
+                  <MaterialIcons name="directions" size={28} color="#1E90FF" />
+                </TouchableOpacity>
               </View>
             </View>
           ))}
@@ -67,29 +124,40 @@ function RestaurantScreen() {
               <Image source={cafe.image} style={styles.image} />
               <View style={{ padding: 5 }}>
                 <Text style={styles.title}>{cafe.name}</Text>
+
                 <View style={styles.locationContainer}>
-                  <Icon
-                    name="location-arrow"
-                    size={20}
-                    color="#999"
-                    style={styles.locationIcon}
-                  />
-                  <Text style={styles.location}>{cafe.location}</Text>
-                </View>
-                <View style={styles.locationContainer}>
-                  <Icon
-                    name="external-link"
-                    size={20}
-                    color="#999"
-                    style={styles.locationIcon}
-                  />
                   <TouchableOpacity
                     onPress={() => Linking.openURL(cafe.website)}
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginLeft: 10,
+                    }}
                   >
-                    <Text style={styles.location}>{cafe.website}</Text>
+                    <Icon
+                      name="external-link"
+                      size={20}
+                      color="#1E90FF"
+                      style={styles.locationIcon}
+                    />
+                    <Text
+                      style={{
+                        color: "#1E90FF",
+                        textDecorationLine: "underline",
+                        left: 5,
+                      }}
+                    >
+                      {cafe.website}
+                    </Text>
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.details}>{cafe.details}</Text>
+                <TouchableOpacity
+                  style={styles.iconContainer}
+                  onPress={() => goToNavigationScreen(cafe)}
+                >
+                  <MaterialIcons name="directions" size={28} color="#1E90FF" />
+                </TouchableOpacity>
               </View>
             </View>
           ))}
@@ -107,28 +175,38 @@ function RestaurantScreen() {
               <View style={{ padding: 5 }}>
                 <Text style={styles.title}>{nightClub.name}</Text>
                 <View style={styles.locationContainer}>
-                  <Icon
-                    name="location-arrow"
-                    size={20}
-                    color="#999"
-                    style={styles.locationIcon}
-                  />
-                  <Text style={styles.location}>{nightClub.location}</Text>
-                </View>
-                <View style={styles.locationContainer}>
-                  <Icon
-                    name="external-link"
-                    size={20}
-                    color="#999"
-                    style={styles.locationIcon}
-                  />
                   <TouchableOpacity
                     onPress={() => Linking.openURL(nightClub.website)}
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginLeft: 10,
+                    }}
                   >
-                    <Text style={styles.location}>{nightClub.website}</Text>
+                    <Icon
+                      name="external-link"
+                      size={20}
+                      color="#1E90FF"
+                      style={styles.locationIcon}
+                    />
+                    <Text
+                      style={{
+                        color: "#1E90FF",
+                        textDecorationLine: "underline",
+                        left: 5,
+                      }}
+                    >
+                      {nightClub.website}
+                    </Text>
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.details}>{nightClub.details}</Text>
+                <TouchableOpacity
+                  style={styles.iconContainer}
+                  onPress={() => goToNavigationScreen(cafe)}
+                >
+                  <MaterialIcons name="directions" size={28} color="#1E90FF" />
+                </TouchableOpacity>
               </View>
             </View>
           ))}
@@ -139,16 +217,6 @@ function RestaurantScreen() {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
-      <Text
-        style={{
-          fontSize: 24,
-          fontWeight: "bold",
-          marginLeft: 15,
-          marginTop: 20,
-        }}
-      >
-        Categories
-      </Text>
       <View
         style={{
           flexDirection: "row",
@@ -278,7 +346,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    marginLeft: 10,
+    marginLeft: 5,
   },
   details: {
     marginLeft: 10,
@@ -289,7 +357,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
     marginTop: 10,
-    marginLeft: 10,
+    // marginLeft: 5,
+  },
+  iconContainer: {
+    height: 50,
+    width: 50,
+    position: "absolute",
+    top: -30,
+    backgroundColor: "#ffffff",
+    borderRadius: 30,
+    right: 20,
+    elevation: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  goNowButton: {
+    height: 40,
+    width: 110,
+    backgroundColor: "#1E90FF",
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    left: 250,
   },
 });
 

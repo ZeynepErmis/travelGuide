@@ -10,6 +10,7 @@ import BeachScreen from "./src/screens/categoryScreens/BeachScreen";
 import ActivityScreen from "./src/screens/categoryScreens/ActivityScreen";
 import ShoppingScreen from "./src/screens/categoryScreens/ShoppingScreen";
 import SplashScreen from "./src/screens/helper/SplashScreen";
+// import FavouritesScreen from "./src/screens/helper/FavouritesScreen";
 import "expo-dev-client";
 
 const Stack = createNativeStackNavigator();
@@ -30,12 +31,16 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="BottomNavigation"component={BottomNavigation} />
+            <Stack.Screen
+              name="BottomNavigation"
+              component={BottomNavigation}
+            />
             <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
             <Stack.Screen name="ParkScreen" component={ParkScreen} />
             <Stack.Screen name="BeachScreen" component={BeachScreen} />
             <Stack.Screen name="ActivityScreen" component={ActivityScreen} />
             <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />
+            {/* <Stack.Screen name="FavouritesScreen" component={FavouritesScreen} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       )}

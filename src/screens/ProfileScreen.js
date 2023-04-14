@@ -5,7 +5,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import auth from "@react-native-firebase/auth";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import Icon from "react-native-vector-icons/AntDesign";
-// import ImagePickerExample from "../components/ImagePicker";
+import ImagePickerExample from "../components/ImagePicker";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 function ProfileScreen({ navigation }) {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -78,8 +79,8 @@ function ProfileScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* <ImagePickerExample/> */}
-      <Text style={styles.title}>Profile</Text>
+      <ImagePickerExample />
+
       <View style={styles.emailContainer}>
         <View style={styles.emailBox}>
           <View style={[styles.iconContainer]}>
@@ -91,6 +92,7 @@ function ProfileScreen({ navigation }) {
           </View>
         </View>
       </View>
+
       {loggedIn && username && (
         <View style={styles.usernameContainer}>
           <View style={styles.usernameBox}>
@@ -102,7 +104,6 @@ function ProfileScreen({ navigation }) {
           </View>
         </View>
       )}
-
       {loggedIn ? (
         <>
           <TouchableOpacity style={styles.button} onPress={handleLogout}>
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 10,
+    marginTop: 20,
   },
   emailContainer: {
     alignItems: "center",
@@ -172,6 +173,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
+  favoriteBox: {
+    backgroundColor: "#F5F5F5",
+    height: 60,
+    width: "100%",
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#D3D3D3",
+    borderWidth: 1,
+    margin: 10,
+  },
+  favoriteIcon: {
+    color: "#1E90FF",
+  },
   usernameBox: {
     backgroundColor: "#F5F5F5",
     height: 60,
@@ -209,13 +225,35 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    marginTop: 20,
+    marginTop: 5,
   },
   buttonText: {
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  favoritesButton: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: "white",
+    borderRadius: 50,
+    width: 60,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  favoritesIcon: {
+    color: "#1E90FF",
   },
 });
 
