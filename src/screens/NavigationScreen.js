@@ -3,11 +3,9 @@ import {
   StyleSheet,
   View,
   TextInput,
-  Button,
   FlatList,
   TouchableOpacity,
   Text,
-  Alert,
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 import polyline from "@mapbox/polyline";
@@ -30,9 +28,6 @@ export default function NavigationScreen({ route }) {
   const [durationText, setDurationText] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
   const [transitDetails, setTransitDetails] = useState([]);
-  const [selectedRouteIndex, setSelectedRouteIndex] = useState(0);
-
-  console.log(transitDetails);
 
   const { place } = route.params || {};
 
@@ -80,8 +75,6 @@ export default function NavigationScreen({ route }) {
   };
 
   const handleOriginPredictionPress = async (prediction) => {
-    console.log("handleOriginPredictionPress called");
-
     setSelectedOrigin(prediction);
     setOrigin(prediction.description);
     try {
@@ -89,7 +82,6 @@ export default function NavigationScreen({ route }) {
         `https://maps.googleapis.com/maps/api/place/details/json?place_id=${prediction.place_id}&key=AIzaSyAReFuIL5WMdBM1OFwJQ5N3s4uZVfDCVGU`
       );
       const responseJson = await response.json();
-      console.log(responseJson); // log the response
       const { lat, lng } = responseJson.result.geometry.location;
       setOriginCoords({ latitude: lat, longitude: lng });
     } catch (error) {
@@ -136,9 +128,9 @@ export default function NavigationScreen({ route }) {
         const durationText =
           duration &&
           (duration.text ||
-            `${duration.hours ? duration.hours + " saat " : ""}${
+            `${duration.hours ? duration.hours + " hour " : ""}${
               duration.minutes
-            } dakika`);
+            } minutes`);
 
         setDistanceText(distanceText);
         setDurationText(durationText);
@@ -183,9 +175,13 @@ export default function NavigationScreen({ route }) {
       } else {
         console.log("No routes found for the given origin and destination");
       }
-      if(selectedIndex!==null || travelMode==="driving" ||travelMode==="walking" ){
-      setShowSearch(false);
-    }
+      if (
+        selectedIndex !== null ||
+        travelMode === "driving" ||
+        travelMode === "walking"
+      ) {
+        setShowSearch(false);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -198,14 +194,13 @@ export default function NavigationScreen({ route }) {
   }, [originCoords, destinationCoords]);
 
   useEffect(() => {
-    // Eğer place varsa, destination ve destinationCoords'u güncelleyin
     if (place) {
       setDestination(place.name);
       setDestinationCoords(place.coordinate);
-      setOrigin(null)
+      setOrigin(null);
       setSelectedOrigin(null);
-      setOriginCoords(null)
-      setRouteCoords(null)
+      setOriginCoords(null);
+      setRouteCoords(null);
     }
   }, [place]);
 
@@ -310,7 +305,7 @@ export default function NavigationScreen({ route }) {
             <FlatList
               style={styles.predictionsContainer}
               data={originPredictions}
-              keyboardShouldPersistTaps="handled" // eklenen prop
+              keyboardShouldPersistTaps="handled"
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.predictionItem}
@@ -389,39 +384,36 @@ export default function NavigationScreen({ route }) {
             </TouchableOpacity>
           </View>
           {showSearch &&
-              travelMode === "transit" &&
-              transitDetails.length > 0 && (
-                <FlatList
-                  style={styles.transitDetailsContainer}
-                  data={transitDetails}
-                  renderItem={({ item, index }) => (
-                    <View style={styles.transitDetailItem} key={index}>
-                      <TouchableOpacity
-                        onPress={() => {
-                          handleSearch(index);
-                        }}
-                        style={styles.transitDetailItem}
-                        key={index}
-                      >
-                        <Text style={styles.transitDetailHeader}>
-                          Option {index + 1}: {item.distance} - {item.duration}
+            travelMode === "transit" &&
+            transitDetails.length > 0 && (
+              <FlatList
+                style={styles.transitDetailsContainer}
+                data={transitDetails}
+                renderItem={({ item, index }) => (
+                  <View style={styles.transitDetailItem} key={index}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        handleSearch(index);
+                      }}
+                      style={styles.transitDetailItem}
+                      key={index}
+                    >
+                      <Text style={styles.transitDetailHeader}>
+                        Option {index + 1}: {item.distance} - {item.duration}
+                      </Text>
+                      {item.steps.map((step, stepIndex) => (
+                        <Text key={stepIndex} style={styles.transitDetailText}>
+                          {step.line} - {step.departureStop} -{" "}
+                          {step.arrivalStop}
                         </Text>
-                        {item.steps.map((step, stepIndex) => (
-                          <Text
-                            key={stepIndex}
-                            style={styles.transitDetailText}
-                          >
-                            {step.line} - {step.departureStop} -{" "}
-                            {step.arrivalStop}
-                          </Text>
-                        ))}
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                  keyExtractor={(item, index) => index.toString()}
-                  scrollEnabled
-                />
-              )}
+                      ))}
+                    </TouchableOpacity>
+                  </View>
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                scrollEnabled
+              />
+            )}
           <TouchableOpacity
             style={styles.searchButton}
             onPress={() => {
@@ -535,7 +527,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   iconTextContainer: {
-
     flexDirection: "column",
     alignItems: "center",
     width: 35,
@@ -593,14 +584,12 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   transitDetailsContainer: {
-    // position: "relative",
-    top: 15, // arac, yaya ve tranzit ikonunun altında yer almasını istediğiniz değeri girin
-    left:20,
+    top: 15,
+    left: 20,
     width: "90%",
-    maxHeight: "60%", // İstediğiniz maksimum yüksekliği ayarlayın
+    maxHeight: "60%",
     zIndex: 1,
     backgroundColor: "white",
-
   },
   transitDetailItem: {
     backgroundColor: "#f9f9f9",
@@ -615,7 +604,4 @@ const styles = StyleSheet.create({
   transitDetailText: {
     fontSize: 14,
   },
-  transitDetailsWrapper:{
-    position:"absolute"
-  }
 });

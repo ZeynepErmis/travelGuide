@@ -10,7 +10,6 @@ import BeachScreen from "./src/screens/categoryScreens/BeachScreen";
 import ActivityScreen from "./src/screens/categoryScreens/ActivityScreen";
 import ShoppingScreen from "./src/screens/categoryScreens/ShoppingScreen";
 import SplashScreen from "./src/screens/helper/SplashScreen";
-// import FavouritesScreen from "./src/screens/helper/FavouritesScreen";
 import "expo-dev-client";
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +17,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading data
   setTimeout(() => {
     setLoading(false);
   }, 3000);
@@ -40,7 +38,6 @@ export default function App() {
             <Stack.Screen name="BeachScreen" component={BeachScreen} />
             <Stack.Screen name="ActivityScreen" component={ActivityScreen} />
             <Stack.Screen name="ShoppingScreen" component={ShoppingScreen} />
-            {/* <Stack.Screen name="FavouritesScreen" component={FavouritesScreen} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       )}
@@ -51,7 +48,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     alignItems: "center",
     justifyContent: "center",
   },

@@ -1,108 +1,5 @@
-// import React, { useState } from "react";
-// import { View, Button, Image, StyleSheet, Text } from "react-native";
-// import * as ImagePicker from "expo-image-picker";
-// import axios from "axios";
-// import * as FileSystem from "expo-file-system";
-
-// const apiEndpoint = `https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBZIxMZ3UrRe-gNQ5IC9NuqKLiRRJTS05o`;
-
-// const CameraScreen = () => {
-//   const [selectedImage, setSelectedImage] = useState(null);
-//   const [recognizedLandmark, setRecognizedLandmark] = useState(null);
-
-//     const pickImage = async () => {
-//     let result = await ImagePicker.launchImageLibraryAsync({
-//       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-//       allowsEditing: true,
-//       aspect: [4, 3],
-//       quality: 1,
-//     });
-
-//     if (!result.canceled) {
-//       setSelectedImage(result.assets[0].uri);
-//       sendImageForRecognition(result.uri);
-//     }
-//   };
-
-//   const sendImageForRecognition = async (imageUri) => {
-//     try {
-//       const imageBase64 = await FileSystem.readAsStringAsync(imageUri, {
-//         encoding: FileSystem.EncodingType.Base64,
-//       });
-
-//       const response = await axios.post(apiEndpoint, {
-//         requests: [
-//           {
-//             image: {
-//               content: imageBase64,
-//             },
-//             features: [
-//               {
-//                 type: "LANDMARK_DETECTION",
-//                 maxResults: 1,
-//               },
-//             ],
-//           },
-//         ],
-//       });
-
-//       const landmarkDescription =
-//         response.data.responses[0].landmarkAnnotations[0].description;
-//       console.log("Image recognition response: ", landmarkDescription);
-//       setRecognizedLandmark(landmarkDescription); // set the recognizedLandmark state
-//       if (response.data.responses[0].error) {
-//         console.error(
-//           "Image recognition error: ",
-//           response.data.responses[0].error
-//         );
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       {selectedImage && (
-//         <Image source={{ uri: selectedImage }} style={styles.image} />
-//       )}
-//       {recognizedLandmark && (
-//         <Text style={styles.text}>{`This is the ${recognizedLandmark}.`}</Text>
-//       )}
-//       <Button title="Select Image" onPress={pickImage} />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   image: {
-//     width: 200,
-//     height: 200,
-//     marginBottom: 20,
-//   },
-//   text: {
-//     fontSize: 20,
-//     fontWeight: "bold",
-//     marginVertical: 10,
-//   },
-// });
-
-// export default CameraScreen;
-
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
@@ -133,13 +30,12 @@ const CameraScreen = ({ navigation }) => {
       (place) => place.name.toLowerCase() === landmarkDescription.toLowerCase()
     );
     try {
-    if (foundPlace) {
-      navigation.navigate("DetailsScreen", foundPlace);
-    }}
-    catch(error) {
+      if (foundPlace) {
+        navigation.navigate("DetailsScreen", foundPlace);
+      }
+    } catch (error) {
       console.error(`No place found with the name "${recognizedLandmark}"`);
-    
-  }
+    }
   };
 
   const sendImageForRecognition = async (imageUri) => {
@@ -163,17 +59,19 @@ const CameraScreen = ({ navigation }) => {
           },
         ],
       });
-      const landmarkDescription =
-        response.data.responses[0].landmarkAnnotations[0].description;
-      console.log("Image recognition response: ", landmarkDescription);
 
-      if (response.data.responses[0].error) {
-        console.error(
-          "Image recognition error: ",
-          response.data.responses[0].error
-        );
-      } else {
+      try {
+        const landmarkDescription =
+          response.data.responses[0].landmarkAnnotations[0].description;
         navigateToDetailsScreen(landmarkDescription);
+      } catch (error) {
+        if (response.data.responses[0].error) {
+          console.error(
+            "Image recognition error: ",
+            response.data.responses[0].error
+          );
+        }
+        alert("Could not recognise the image");
       }
     } catch (error) {
       console.error(error);
@@ -290,19 +188,11 @@ const CameraScreen = ({ navigation }) => {
 export default CameraScreen;
 
 const styles = StyleSheet.create({
-  image2: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
-  },
-  text2: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  container2: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  modalButton: {
+    backgroundColor: "blue",
+    padding: 10,
+    borderRadius: 5,
+    alignSelf: "center",
   },
   container: {
     flex: 1,

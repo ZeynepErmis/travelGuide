@@ -4,16 +4,13 @@ import {
   StyleSheet,
   Dimensions,
   Text,
-  TextInput,
   TouchableOpacity,
   Image,
   FlatList,
-  ViewBase,
-  ImageBackground,
   ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { places } from "../components/data";
 import SearchPlacesBar from "../components/SearchPlacesBar";
 
@@ -21,7 +18,7 @@ const { width } = Dimensions.get("window");
 
 const HomeScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   const categoryIcons = [
     {
       name: "park",
@@ -111,7 +108,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={[styles.headerTitle]}> Discover</Text>
               <Text style={[styles.headerTitle]}> Istanbul with us</Text>
             </View>
-           <SearchPlacesBar/>
+            <SearchPlacesBar />
           </View>
         </View>
         <ListCategories />
@@ -144,10 +141,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFF",
   },
-  // header: {
-  //   height: width / 2.5,
-  //   // backgroundColor: "#1E90FF",
-  // },
   headerContent: {
     flex: 1,
     justifyContent: "center",
@@ -161,22 +154,10 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 25,
     fontWeight: "bold",
-    // color: "#fff",
     color: "black",
   },
- 
-  // boxList: {
-  //   paddingHorizontal: 10,
-  // },
   boxItemContainer: {
     paddingHorizontal: 11,
-  },
-  historicalPlacesContainer: {
-    position: "absolute",
-    top: 200,
-    left: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
   },
   historicalPlacesText: {
     marginHorizontal: 20,

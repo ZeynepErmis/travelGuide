@@ -85,15 +85,6 @@ const DetailsScreen = ({ navigation, route }) => {
   );
 };
 const style = StyleSheet.create({
-  bookNowBtn: {
-    height: 50,
-    width: 150,
-    backgroundColor: "#1E90FF",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 200,
-  },
   iconContainer: {
     height: 60,
     width: 60,
@@ -128,16 +119,6 @@ const style = StyleSheet.create({
     width: "100%",
     position: "absolute",
     bottom: 30,
-  },
-  footer: {
-    flexDirection: "row",
-    backgroundColor: "#ffffff",
-    height: 70,
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
   },
 });
 

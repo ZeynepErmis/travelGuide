@@ -824,4 +824,102 @@ export const places = {
     //   website: "https://www.lacivertrestaurant.com/en.html#/home",
     // },
   ],
+  imageRecognition: [
+    {
+      id: "1",
+      name: "Dolmabahçe Clock Tower",
+      image: require("../../assets/DolmabahceClockTower.jpg"),
+      location: "Vişnezade, 34357 Besiktas",
+      coordinate: {
+        latitude: 41.037609,
+        longitude: 28.996435,
+      },
+      details:
+        "The Dolmabahce Clock Tower is an iconic landmark in Istanbul, Turkey, known for its intricate Ottoman and European architectural style. Standing at 27 meters, it serves as a symbol of the city's rich history and cultural heritage.",
+    },
+    {
+      id: "2",
+      name: "Dolmabahçe Palace",
+      image: require("../../assets/DolmabahcePalace.jpg"),
+      location: " Dolmabahçe Cd., 34357 Besiktas",
+      coordinate: {
+        latitude: 41.039,
+        longitude: 29.001,
+      },
+      details:
+        "Dolmabahce Palace is a magnificent palace located in Istanbul, Turkey. It served as the administrative center of the Ottoman Empire and is renowned for its opulent design and exquisite interiors.",
+    },
+    {
+      id: "3",
+      name: "Hagia Sophia",
+      image: require("../../assets/hagiaSophia.jpg"),
+      location: "Sultan Ahmet, Ayasofya Meydanı, 34122 Fatih/Istanbul",
+      coordinate: {
+        latitude: 41.0086,
+        longitude: 28.9802,
+      },
+      details:
+        "Hagia Sophia is a remarkable architectural structure that has served as an Eastern Orthodox cathedral, a Roman Catholic cathedral, a mosque, and now a museum. Its rich history and architectural magnificence make it a must-visit landmark in Istanbul.",
+    },
+    {
+      id: "4",
+      name: "Ortaköy Square",
+      image: require("../../assets/ortakoyMosque.jpg"),
+      location: "Ortaköy, 34347 Beşiktaş/Istanbul",
+      coordinate: {
+        latitude: 41.0485,
+        longitude: 29.0274,
+      },
+      details:
+        "Ortaköy Square is a popular area in Istanbul known for its lively atmosphere. The Ortaköy Mosque, one of the city's most iconic sights, overlooks the square and the Bosphorus, offering an incredible view.",
+    },
+    {
+      id: "5",
+      name: "Obelisk Of Theodosius",
+      image: require("../../assets/obeliskOfTheodosius.jpg"),
+      location: "Sultan Ahmet, At Meydanı Cd., 34122 Fatih/Istanbul",
+      coordinate: {
+        latitude: 41.0058,
+        longitude: 28.9769,
+      },
+      details:
+        "The Obelisk of Theodosius is an Ancient Egyptian obelisk located in the Hippodrome of Constantinople. The monument, initially erected by Pharaoh Thutmose III, was re-erected in Istanbul by the Roman emperor Theodosius the Great in the 4th century AD.",
+    },
+    {
+      id: "6",
+      name: "Topkapi Palace Museum",
+      image: require("../../assets/topkapiPalace.jpg"),
+      location: "Cankurtaran, 34122 Fatih/Istanbul",
+      coordinate: {
+        latitude: 41.0115,
+        longitude: 28.9833,
+      },
+      details:
+        "The Topkapi Palace Museum is a large museum in Istanbul. It was the main residence and administrative headquarters of the Ottoman Sultans in the 15th century. Today, it serves as a museum showcasing the history of the Ottoman Empire.",
+    },
+    {
+      id: "7",
+      name: "Fatih Memorial Park",
+      image: require("../../assets/theAqueductofValens.jpg"),
+      location: "Saraçhane, 34083 Fatih/Istanbul",
+      coordinate: {
+        latitude: 41.0198,
+        longitude: 28.9472,
+      },
+      details:
+        "Fatih Memorial Park, also known as Fatih Park, is a beautiful green space in the heart of Istanbul's Fatih district. The park offers a serene environment amidst the bustling city, and it's a popular spot for locals and tourists alike.",
+    },
+    {
+      id: "8",
+      name: "Sultanahmet Square",
+      image: require("../../assets/blueMosque.jpg"),
+      location: "Sultanahmet, 34122 Fatih/Istanbul",
+      coordinate: {
+        latitude: 41.0069,
+        longitude: 28.9767,
+      },
+      details:
+        "Sultanahmet Square, also known as Hippodrome Square, is a significant historical site surrounded by the Blue Mosque, Hagia Sophia, and the Basilica Cistern. The square has been a center of social, cultural, and political activities throughout Istanbul's history and remains a popular tourist attraction.",
+    },
+  ],
 };

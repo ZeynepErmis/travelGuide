@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { authEmail } from "../auth/firebase";
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { onAuthStateChanged } from "firebase/auth";
 import auth from "@react-native-firebase/auth";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import Icon from "react-native-vector-icons/AntDesign";
 import ImagePickerExample from "../components/ImagePicker";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 function ProfileScreen({ navigation }) {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -57,11 +56,11 @@ function ProfileScreen({ navigation }) {
         auth().currentUser.providerData.some(
           (provider) =>
             provider.providerId === auth.GoogleAuthProvider.PROVIDER_ID
-        )
-      ) {
-        await GoogleSignin.revokeAccess();
-        await auth().signOut();
-      }
+        ))
+        {
+          await GoogleSignin.revokeAccess();
+          await auth().signOut();
+        }
       if (unsubscribeEmail) {
         unsubscribeEmail();
       }
@@ -127,12 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: 20,
-  },
   emailContainer: {
     alignItems: "center",
     marginBottom: 10,
@@ -147,12 +140,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: "#D3D3D3",
     borderWidth: 1,
-  },
-  emailLabel: {
-    fontSize: 12,
-    fontWeight: "bold",
-    color: "#808080",
-    marginRight: 10,
   },
   emailTextContainer: {
     flex: 1,
@@ -173,21 +160,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
-  favoriteBox: {
-    backgroundColor: "#F5F5F5",
-    height: 60,
-    width: "100%",
-    paddingHorizontal: 12,
-    borderRadius: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    borderColor: "#D3D3D3",
-    borderWidth: 1,
-    margin: 10,
-  },
-  favoriteIcon: {
-    color: "#1E90FF",
-  },
   usernameBox: {
     backgroundColor: "#F5F5F5",
     height: 60,
@@ -207,13 +179,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderColor: "#1E90FF",
   },
-  usernameLine: {
-    height: 30,
-    borderRightColor: "#D3D3D3",
-    borderRightWidth: 1,
-    marginRight: 10,
-    paddingRight: 2,
-  },
   icon: {
     color: "#1E90FF",
   },
@@ -232,28 +197,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
-  },
-  favoritesButton: {
-    position: "absolute",
-    bottom: 20,
-    right: 20,
-    backgroundColor: "white",
-    borderRadius: 50,
-    width: 60,
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  favoritesIcon: {
-    color: "#1E90FF",
   },
 });
 

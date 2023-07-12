@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     backgroundColor: "#F5F5F5",
-    justifyContent: "center", // center horizontally
-    alignItems: "center", // center vertically
+    justifyContent: "center",
+    alignItems: "center", 
     overflow: "visible",
     margin: 20,
     marginHorizontal: 125,
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 15,
     backgroundColor: "#F5F5F5",
-    justifyContent: "center", // center horizontally
-    alignItems: "center", // center vertically
+    justifyContent: "center", 
+    alignItems: "center", 
     borderWidth: 1,
     borderColor: "#999",
     overflow: "visible",
