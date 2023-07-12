@@ -4,11 +4,9 @@ import {
   FlatList,
   StyleSheet,
   Image,
-  VirtualizedList,
   TouchableOpacity,
 } from "react-native";
 import { places } from "../../components/data";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 const ParkScreen = ({ navigation }) => {
@@ -35,18 +33,6 @@ const ParkScreen = ({ navigation }) => {
       </TouchableOpacity>
       <View style={{ padding: 20 }}>
         <Text style={styles.title}>{item.name}</Text>
-        {/* <View style={styles.locationContainer}>
-          <TouchableOpacity
-            onPress={() => goToNavigationScreen(item)}
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Icon name="directions" size={28} color="#1E90FF" />
-            <Text style={styles.location}>{item.location}</Text>
-          </TouchableOpacity>
-        </View> */}
         <Text style={styles.details}>{item.details}</Text>
       </View>
     </View>
@@ -79,7 +65,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    // backgroundColor:"#1E90FF",
     paddingHorizontal: 15,
     paddingVertical: 10,
     flexDirection: "row",
@@ -122,18 +107,6 @@ const styles = StyleSheet.create({
   },
   location: {
     color: "#999",
-  },
-  locationContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-    marginLeft: -5,
-  },
-  locationIcon: {
-    alignSelf: "center",
-  },
-  description: {
-    paddingBottom: 10,
   },
   iconContainer: {
     height: 50,

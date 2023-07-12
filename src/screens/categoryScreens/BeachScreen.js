@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    // backgroundColor:"#1E90FF",
     paddingHorizontal: 15,
     paddingVertical: 10,
     flexDirection: "row",
@@ -112,18 +111,6 @@ const styles = StyleSheet.create({
   },
   location: {
     color: "#999",
-  },
-  locationContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-    marginLeft: -5,
-  },
-  locationIcon: {
-    alignSelf: "center",
-  },
-  description: {
-    paddingBottom: 10,
   },
   iconContainer: {
     height: 50,

@@ -5,13 +5,11 @@ import {
   FlatList,
   StyleSheet,
   Image,
-  VirtualizedList,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
 import { places } from "../../components/data";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const ActivityScreen = ({ navigation }) => {
   const goToNavigationScreen = (item) => {
@@ -72,7 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    // backgroundColor:"#1E90FF",
     paddingHorizontal: 15,
     paddingVertical: 10,
     flexDirection: "row",
@@ -115,18 +112,6 @@ const styles = StyleSheet.create({
   },
   location: {
     color: "#999",
-  },
-  locationContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-    marginLeft: -5,
-  },
-  locationIcon: {
-    alignSelf: "center",
-  },
-  description: {
-    paddingBottom: 10,
   },
   iconContainer: {
     height: 50,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,48 +11,8 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { places } from "../components/data";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function RestaurantScreen({ navigation }) {
-  // const [favorites, setFavorites] = useState([]);
-
-  // console.log(favorites);
-  // useEffect(() => {
-  //   getFavorites();
-  // }, []);
-
-  // const getFavorites = async () => {
-  //   try {
-  //     const favorites = await AsyncStorage.getItem("favorites");
-  //     if (favorites !== null) {
-  //       setFavorites(JSON.parse(favorites));
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
-  // const saveFavorites = async (favorites) => {
-  //   try {
-  //     await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
-  // const toggleFavorite = (id) => {
-  //   const index = favorites.indexOf(id);
-  //   if (index === -1) {
-  //     setFavorites([...favorites, id]);
-  //   } else {
-  //     setFavorites(favorites.filter((item) => item !== id));
-  //   }
-  //   saveFavorites(favorites);
-  // };
-
-  // const isFavorite = (id) => {
-  //   return favorites.includes(id);
-  // };
 
   const [selectedCategory, setSelectedCategory] = useState("Restaurants");
   const goToNavigationScreen = (place) => {
@@ -357,7 +317,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
     marginTop: 10,
-    // marginLeft: 5,
   },
   iconContainer: {
     height: 50,
@@ -370,16 +329,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     justifyContent: "center",
     alignItems: "center",
-  },
-  goNowButton: {
-    height: 40,
-    width: 110,
-    backgroundColor: "#1E90FF",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 250,
-  },
+  }
 });
 
 export default RestaurantScreen;
